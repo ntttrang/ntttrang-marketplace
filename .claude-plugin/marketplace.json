@@ -1,0 +1,25 @@
+{
+  "$schema": "https://claude.dotclaude.com/schemas/plugin-marketplace.json",
+  "name": "ntttrang-marketplace",
+  "owner": {
+    "name": "ntttrang"
+  },
+  "description": "Personal collection of Claude Code plugins: skills, agents, hooks, and MCP servers",
+  "metadata": {
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "drawio-tools",
+      "source": "./plugins/drawio-tools",
+      "description": "Understand and explain existing diagrams: .drawio, exported SVG, or images of flowcharts, architecture diagrams, ERDs, and sequence diagrams",
+      "version": "1.0.0",
+      "category": "documentation",
+      "keywords": ["drawio", "diagram", "documentation", "visualization"],
+      "author": {
+        "name": "ntttrang"
+      },
+      "license": "MIT"
+    }
+  ]
+}

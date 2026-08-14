@@ -1,0 +1,56 @@
+{
+  "skill_name": "drawio-understand",
+  "evals": [
+    {
+      "id": 0,
+      "eval_name": "compressed-drawio-architecture",
+      "prompt": "My teammate sent me this draw.io file but I've never used draw.io and I'm new to system design. Can you explain what this system does? The file is /Users/trang_thi_thuy.n/GIT/ntttrang-plugin/skills/drawio-understand-workspace/fixtures/architecture.drawio",
+      "expected_output": "A beginner-friendly Markdown system map: plain-language summary, node/boundary/edge inventory covering swimlanes (Client/Server), the database cylinders, the dashed 'validates token' edge, a step-by-step flow walkthrough, and a Mermaid recreation",
+      "files": [
+        "fixtures/architecture.drawio"
+      ],
+      "assertions": [
+        "Decoded the compressed .drawio file and identified all 7 nodes: User, Browser, CDN, API Gateway, Auth Service, Main DB, Redis Cache",
+        "Identifies the two swimlanes (Client and Server) and explains them as boundaries / responsibility areas",
+        "Recognizes Main DB and Redis Cache as data stores (cylinder/database shapes)",
+        "Explains the dashed 'validates token' edge from API Gateway to Auth Service, noting dashed styling",
+        "Includes a numbered step-by-step walkthrough of the request flow",
+        "Includes a Mermaid diagram recreating the flow"
+      ]
+    },
+    {
+      "id": 1,
+      "eval_name": "flowchart-decision-walkthrough",
+      "prompt": "i'm a junior dev and this is the checkout flow our team drew in draw.io. walk me through what happens step by step, including the error paths. /Users/trang_thi_thuy.n/GIT/ntttrang-plugin/skills/drawio-understand-workspace/fixtures/checkout-flow.drawio.xml",
+      "expected_output": "Markdown explanation that follows the main happy path through the decision diamonds (Logged in?, Items in stock?, Payment approved?) and narrates each branch including the retry loop and backorder path, in beginner-friendly language",
+      "files": [
+        "fixtures/checkout-flow.drawio.xml"
+      ],
+      "assertions": [
+        "Identifies all three decision points: 'Logged in?', 'Items in stock?', 'Payment approved?'",
+        "Narrates the main happy path in order from 'Customer clicks Checkout' to 'Order complete'",
+        "Explains the payment-failure retry loop (payment error -> retry -> re-enter payment details)",
+        "Explains the backorder branch when items are not in stock",
+        "Uses beginner-friendly language: explains or avoids unexplained jargon",
+        "Structure is scannable: summary + inventory + step-by-step walkthrough (tables or lists), not one wall of prose"
+      ]
+    },
+    {
+      "id": 2,
+      "eval_name": "image-only-microservices",
+      "prompt": "Can you explain this diagram? I have no idea what it's showing. /Users/trang_thi_thuy.n/GIT/ntttrang-plugin/skills/drawio-understand-workspace/fixtures/microservices.svg.png",
+      "expected_output": "Markdown system map produced from visual reading only: AWS VPC dashed boundary, API Gateway routing to Orders/Users services, each service with its own DB, and the dashed 'validates user' call between services",
+      "files": [
+        "fixtures/microservices.svg.png"
+      ],
+      "assertions": [
+        "Identifies the dashed 'AWS VPC' box as a boundary containing all components",
+        "Identifies Orders Service and Users Service as separate components",
+        "Identifies the two databases (Orders DB, Users DB) and connects each to its service",
+        "Notes the dashed 'validates user' arrow from Orders Service to Users Service and interprets its likely meaning",
+        "Explains the overall flow starting from the API Gateway",
+        "Does not fabricate elements: every component described appears in the image"
+      ]
+    }
+  ]
+}
