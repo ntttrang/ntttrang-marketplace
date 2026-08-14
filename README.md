@@ -6,14 +6,14 @@ My personal Claude Code plugin marketplace — a collection of skills, agents, h
 
 | Plugin | Description |
 |--------|-------------|
-| [drawio-tools](./plugins/drawio-tools) | Understand and explain existing diagrams: `.drawio`, exported SVG, or images of flowcharts, architecture diagrams, ERDs, and sequence diagrams |
+| [drawio-tools](./plugins/drawio-tools) | Understand and explain existing diagrams — `.drawio`/XML, exported SVG, or images (screenshots, whiteboard photos, hand-drawn sketches) of flowcharts, architecture, ERD, sequence, and org charts. Delivers a plain-language summary, a full node/edge inventory, a step-by-step walkthrough, and a Mermaid recreation |
 
 ## Install
 
 This marketplace lives in a **private GitHub repo**. You need GitHub access to it (Claude Code uses your existing GitHub authentication).
 
 ```text
-/plugin marketplace add <github-user>/ntttrang-plugin
+/plugin marketplace add ntttrang/ntttrang-marketplace
 ```
 
 Then install a plugin:
