@@ -1,0 +1,35 @@
+{
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  },
+  "expectations": [
+    {
+      "text": "Flags the default page name 'Page-2'",
+      "passed": true,
+      "evidence": "Metadata section: 'The page is named Page-2 (default name). Rename it to what it shows, e.g. \"Onboarding Flow\".'"
+    },
+    {
+      "text": "Flags the missing legend given 5 distinct fill colors",
+      "passed": true,
+      "evidence": "Legend section: 'The diagram uses five distinct fill colors \u2014 every node a different one (#d5e8d4, #dae8fc, #ffe6cc, #e1d5e7, #f8cecc) \u2014 and there is no legend', with two concrete remediation options."
+    },
+    {
+      "text": "Flags casing drift: 'signup form' (lowercase) and 'NOTIFY TEAM' (all caps) vs Title Case",
+      "passed": true,
+      "evidence": "Naming section: 'Label casing drifts across three styles... lower case: signup form (n-form), ALL CAPS: NOTIFY TEAM (n-notify)'; fix list item 2 gives 'signup form \u2192 Signup Form' and 'NOTIFY TEAM \u2192 Notify Team'."
+    },
+    {
+      "text": "Mentions the single unlabeled edge (signup form \u2192 Email Verifier) as a minor point",
+      "passed": true,
+      "evidence": "Line labels section: 'Three of the four edges are labeled...; one carries no label: signup form \u2192 Email Verifier (edge e2)', rated a warning not an error, with suggested label 'sends verification email'."
+    },
+    {
+      "text": "Does not over-flag: no invented issues (no dangling edges, no placeholders, no level mixing claimed)",
+      "passed": true,
+      "evidence": "Report explicitly rules them out: 'Nothing here is actively misleading (no dangling edges, no placeholders)', 'Abstraction levels: Clean \u2014 no C4-style level mixing', 'Structure: Clean \u2014 no orphan nodes or dangling edges.' Only the four real fixture issues are flagged; verified against onboarding_flow.drawio."
+    }
+  ]
+}

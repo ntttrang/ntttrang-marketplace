@@ -1,0 +1,30 @@
+{
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "expectations": [
+    {
+      "text": "Overall verdict is that the diagram is clean/publishable (no errors or serious warnings)",
+      "passed": true,
+      "evidence": "'Publishable as-is. No convention violations found... Counts: 0 errors \u00b7 0 warnings \u00b7 0 notes'; fix list says 'Nothing to fix.'"
+    },
+    {
+      "text": "Does NOT invent problems: no claims of placeholder labels, dangling edges, or level mixing",
+      "passed": true,
+      "evidence": "Report explicitly confirms the absences: 'no placeholders, casing drift, or duplicates', 'no orphan nodes and no dangling edges', 'No C4 level mixing.' No invented structural issues anywhere; verified against the fixture."
+    },
+    {
+      "text": "Acknowledges the legend is present and explains the color coding",
+      "passed": true,
+      "evidence": "Legend section: 'the diagram uses three semantic fill colors (blue for services, green for the data store, yellow for the decision node), and the legend note (\"Blue: service / Green: data store / Yellow: decision\") explains all three.'"
+    },
+    {
+      "text": "Notes that all edges are labeled (or makes no complaint about edge labels)",
+      "passed": true,
+      "evidence": "Line labels section: 'all 4 of 4 edges are labeled with meaningful verb phrases' \u2014 lists all four labels (adds items, submits order, writes order, validates)."
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "summary": {
+    "passed": 4,
+    "failed": 1,
+    "total": 5,
+    "pass_rate": 0.8
+  },
+  "expectations": [
+    {
+      "text": "Flags the default page name 'Page-2'",
+      "passed": true,
+      "evidence": "Finding 6: 'The diagram page is named Page-2, which suggests a leftover scratch page... Rename it to something descriptive, e.g., Onboarding Flow.'"
+    },
+    {
+      "text": "Flags the missing legend given 5 distinct fill colors",
+      "passed": true,
+      "evidence": "Finding 3: 'Five nodes use five unrelated fill colors (#d5e8d4, #dae8fc, #ffe6cc, #e1d5e7, #f8cecc) from different palette families, with no legend and no meaning.'"
+    },
+    {
+      "text": "Flags casing drift: 'signup form' (lowercase) and 'NOTIFY TEAM' (all caps) vs Title Case",
+      "passed": true,
+      "evidence": "Finding 4: 'Labels mix four styles: \"Start Here\" (Title Case), \"signup form\" (lowercase)... \"NOTIFY TEAM\" (ALL CAPS)' with Title Case normalization suggested in fix step 3."
+    },
+    {
+      "text": "Mentions the single unlabeled edge (signup form \u2192 Email Verifier) as a minor point",
+      "passed": true,
+      "evidence": "Finding 5 identifies exactly that edge and no others as unlabeled: 'e2 (form \u2192 verify) is unlabeled while its siblings carry labels.' Filed under Medium rather than minor, but it is correctly scoped to the single edge."
+    },
+    {
+      "text": "Does not over-flag: no invented issues (no dangling edges, no placeholders, no level mixing claimed)",
+      "passed": false,
+      "evidence": "The report invents dangling-structure issues the fixture does not contain: finding 2 says 'n-notify in particular is a dangling node with no outgoing edge \u2014 it looks unfinished' and the summary claims 'a dangling failure path with no end node.' In the fixture n-notify is a legitimate terminal step and no edge is broken (all 4 edges resolve). No placeholder or level-mixing claims, but the dangling claims fail this negative assertion."
+    }
+  ]
+}

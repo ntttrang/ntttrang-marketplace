@@ -1,0 +1,360 @@
+{
+  "metadata": {
+    "skill_name": "drawio-convention-lint",
+    "skill_path": "/Users/trang_thi_thuy.n/GIT/ntttrang-marketplace/plugins/drawio-tools/skills/drawio-convention-lint",
+    "executor_model": "<model-name>",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-08-15T02:36:41Z",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 9,
+        "failed": 0,
+        "total": 9,
+        "time_seconds": 98.5,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Flags the 'New Shape' placeholder label as an issue",
+          "passed": true,
+          "evidence": "B3 (BLOCKER): node n-placeholder (\"New Shape\") \u2014 'Untouched default placeholder label shipped in the diagram... Rename to the actual component, or delete it.'"
+        },
+        {
+          "text": "Identifies the dangling edge pointing to a deleted node (n-deleted-long-ago) and/or the floating edge with no endpoints",
+          "passed": true,
+          "evidence": "B1: edge e3 (n-auth \u2192 n-deleted-long-ago) 'targets a node that does not exist anywhere in the file'; B2: e4 'Edge with neither source nor target \u2014 a floating, unconnected edge.'"
+        },
+        {
+          "text": "Reports that the edges are unlabeled (all 5 have no labels)",
+          "passed": true,
+          "evidence": "L1 (MAJOR): 'No edge in the entire diagram has a label.' e3 even carries an explicit empty value=\"\"."
+        },
+        {
+          "text": "Flags the absence of a legend despite 3+ distinct fill colors used meaningfully",
+          "passed": true,
+          "evidence": "G1 (MAJOR): 'No legend exists. The diagram uses at least 4 fill colors, 2 shapes, and a dashed style with no key anywhere.' G2 details the inconsistent color usage."
+        },
+        {
+          "text": "Flags metadata inconsistency: key drift (technology vs tech) and/or owner attribute on only one node",
+          "passed": true,
+          "evidence": "M1 (MAJOR): n-api uses technology=\"Node.js\" + owner=\"team-a\"; n-auth uses tech=\"Go\" and no owner \u2014 'Same concept, two key names... and inconsistent coverage (1 of 10 nodes has an owner).'"
+        },
+        {
+          "text": "Identifies abstraction-level mixing: the Customer actor alongside an API Gateway container with internal components (Request Router, token validator)",
+          "passed": true,
+          "evidence": "B4 (BLOCKER): 'Three abstraction levels are mixed on one page: a person/actor (context level: Customer), containers..., and components inside a container (Request Router, token validator).' Fix: split into two pages."
+        },
+        {
+          "text": "Flags the default page name 'Page-1'",
+          "passed": true,
+          "evidence": "M3 (MINOR): '<diagram name=\"Page-1\">' \u2014 'Default page name... Rename to the diagram's purpose.'"
+        },
+        {
+          "text": "Flags naming drift: 'auth-service' / 'token validator' lowercase vs Title Case labels",
+          "passed": true,
+          "evidence": "N3 (MAJOR): 'Casing convention drift across four different styles: API Gateway / Main DB..., auth-service (kebab-case), token validator... lowercase, Request Router (Title Case)'; fix suggests 'Auth Service, Token Validator'."
+        },
+        {
+          "text": "Report includes concrete, actionable fix suggestions rather than just listing problems",
+          "passed": true,
+          "evidence": "Every finding row has a 'Fix' column with specific actions, plus a 9-step 'Suggested fix order' section (e.g., 'Delete/repair broken edges: e3 (dangling), e4 (floating), e5')."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 67.7,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Overall verdict is that the diagram is clean/publishable (no errors or serious warnings)",
+          "passed": true,
+          "evidence": "'Publishable as-is. No convention violations found... Counts: 0 errors \u00b7 0 warnings \u00b7 0 notes'; fix list says 'Nothing to fix.'"
+        },
+        {
+          "text": "Does NOT invent problems: no claims of placeholder labels, dangling edges, or level mixing",
+          "passed": true,
+          "evidence": "Report explicitly confirms the absences: 'no placeholders, casing drift, or duplicates', 'no orphan nodes and no dangling edges', 'No C4 level mixing.' No invented structural issues anywhere; verified against the fixture."
+        },
+        {
+          "text": "Acknowledges the legend is present and explains the color coding",
+          "passed": true,
+          "evidence": "Legend section: 'the diagram uses three semantic fill colors (blue for services, green for the data store, yellow for the decision node), and the legend note (\"Blue: service / Green: data store / Yellow: decision\") explains all three.'"
+        },
+        {
+          "text": "Notes that all edges are labeled (or makes no complaint about edge labels)",
+          "passed": true,
+          "evidence": "Line labels section: 'all 4 of 4 edges are labeled with meaningful verb phrases' \u2014 lists all four labels (adds items, submits order, writes order, validates)."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 71.7,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Flags the default page name 'Page-2'",
+          "passed": true,
+          "evidence": "Metadata section: 'The page is named Page-2 (default name). Rename it to what it shows, e.g. \"Onboarding Flow\".'"
+        },
+        {
+          "text": "Flags the missing legend given 5 distinct fill colors",
+          "passed": true,
+          "evidence": "Legend section: 'The diagram uses five distinct fill colors \u2014 every node a different one (#d5e8d4, #dae8fc, #ffe6cc, #e1d5e7, #f8cecc) \u2014 and there is no legend', with two concrete remediation options."
+        },
+        {
+          "text": "Flags casing drift: 'signup form' (lowercase) and 'NOTIFY TEAM' (all caps) vs Title Case",
+          "passed": true,
+          "evidence": "Naming section: 'Label casing drifts across three styles... lower case: signup form (n-form), ALL CAPS: NOTIFY TEAM (n-notify)'; fix list item 2 gives 'signup form \u2192 Signup Form' and 'NOTIFY TEAM \u2192 Notify Team'."
+        },
+        {
+          "text": "Mentions the single unlabeled edge (signup form \u2192 Email Verifier) as a minor point",
+          "passed": true,
+          "evidence": "Line labels section: 'Three of the four edges are labeled...; one carries no label: signup form \u2192 Email Verifier (edge e2)', rated a warning not an error, with suggested label 'sends verification email'."
+        },
+        {
+          "text": "Does not over-flag: no invented issues (no dangling edges, no placeholders, no level mixing claimed)",
+          "passed": true,
+          "evidence": "Report explicitly rules them out: 'Nothing here is actively misleading (no dangling edges, no placeholders)', 'Abstraction levels: Clean \u2014 no C4-style level mixing', 'Structure: Clean \u2014 no orphan nodes or dangling edges.' Only the four real fixture issues are flagged; verified against onboarding_flow.drawio."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 9,
+        "failed": 0,
+        "total": 9,
+        "time_seconds": 79.5,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Flags the 'New Shape' placeholder label as an issue",
+          "passed": true,
+          "evidence": "Naming section: 'Placeholder label shipped \u2014 node n-placeholder... still says \"New Shape\"... Either name it or delete it; a placeholder in a shared diagram reads as unfinished work.'"
+        },
+        {
+          "text": "Identifies the dangling edge pointing to a deleted node (n-deleted-long-ago) and/or the floating edge with no endpoints",
+          "passed": true,
+          "evidence": "Structure section: 'Dangling edge e3 \u2014 auth-service \u2192 n-deleted-long-ago. The target node no longer exists' and 'Floating edge e4 \u2014 no source, no target.'"
+        },
+        {
+          "text": "Reports that the edges are unlabeled (all 5 have no labels)",
+          "passed": true,
+          "evidence": "Line labels section: 'All 5 edges are unlabeled (5/5, 100%) \u2014 every relationship on the page is a bare line', with examples and suggested labels."
+        },
+        {
+          "text": "Flags the absence of a legend despite 3+ distinct fill colors used meaningfully",
+          "passed": true,
+          "evidence": "Legend section: '4 fill colors, no legend \u2014 the page uses #ffe6cc..., #dae8fc..., #d5e8d4..., #f8cecc... with no key... Add a legend box stating what each color means, or stop color-coding.'"
+        },
+        {
+          "text": "Flags metadata inconsistency: key drift (technology vs tech) and/or owner attribute on only one node",
+          "passed": true,
+          "evidence": "Metadata section: 'Metadata key drift \u2014 2 of 10 nodes carry metadata, and they don't agree on keys: n-api uses owner=\"team-a\" + technology=\"Node.js\", while n-auth uses tech=\"Go\" (and no owner).'"
+        },
+        {
+          "text": "Identifies abstraction-level mixing: the Customer actor alongside an API Gateway container with internal components (Request Router, token validator)",
+          "passed": true,
+          "evidence": "Abstraction levels section: 'Three C4 levels on one canvas' listing Customer (context), containers, and 'Request Router and token validator inside the dashed API Gateway container (component level)', with a two-page split fix."
+        },
+        {
+          "text": "Flags the default page name 'Page-1'",
+          "passed": true,
+          "evidence": "Metadata section: 'Page name \u2014 the page is still called Page-1. Rename it to what it shows.'"
+        },
+        {
+          "text": "Flags naming drift: 'auth-service' / 'token validator' lowercase vs Title Case labels",
+          "passed": true,
+          "evidence": "Naming section: 'Casing drift \u2014 7 labels are Title Case... but 2 are lower case: auth-service (kebab-case) and token validator.'"
+        },
+        {
+          "text": "Report includes concrete, actionable fix suggestions rather than just listing problems",
+          "passed": true,
+          "evidence": "Every issue ends with a concrete remedy and there is a 9-item 'Fix list' section with specific actions (e.g., 'Label all remaining edges \u2014 start with Customer \u2192 API Gateway (\"HTTPS requests\")')."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 62.6,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Overall verdict is that the diagram is clean/publishable (no errors or serious warnings)",
+          "passed": true,
+          "evidence": "'Overall verdict: Clean \u2014 no blocking convention violations... Recommendation: Accept as-is.' The two observations are explicitly non-blocking: 'neither of which requires a fix to call this diagram conformant.'"
+        },
+        {
+          "text": "Does NOT invent problems: no claims of placeholder labels, dangling edges, or level mixing",
+          "passed": true,
+          "evidence": "Check table passes all 8 checks ('no dangling refs \u2014 all 4 edges resolve to existing nodes'); no placeholder or level-mixing claims anywhere. Its one structural observation (decision node has no outgoing branches) is factually true in the fixture and not one of the prohibited invented categories."
+        },
+        {
+          "text": "Acknowledges the legend is present and explains the color coding",
+          "passed": true,
+          "evidence": "Check 4: 'Fill colors match the legend's declared scheme (blue = service, green = data store, yellow = decision) \u2014 #dae8fc services, #d5e8d4 data store, #fff2cc decision; legend #f5f5f5 note is neutral.'"
+        },
+        {
+          "text": "Notes that all edges are labeled (or makes no complaint about edge labels)",
+          "passed": true,
+          "evidence": "Check 3: 'Every edge is labeled (adds items, submits order, writes order, validates) \u2014 Pass \u2014 no unlabeled connections.'"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8,
+        "passed": 4,
+        "failed": 1,
+        "total": 5,
+        "time_seconds": 61.7,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Flags the default page name 'Page-2'",
+          "passed": true,
+          "evidence": "Finding 6: 'The diagram page is named Page-2, which suggests a leftover scratch page... Rename it to something descriptive, e.g., Onboarding Flow.'"
+        },
+        {
+          "text": "Flags the missing legend given 5 distinct fill colors",
+          "passed": true,
+          "evidence": "Finding 3: 'Five nodes use five unrelated fill colors (#d5e8d4, #dae8fc, #ffe6cc, #e1d5e7, #f8cecc) from different palette families, with no legend and no meaning.'"
+        },
+        {
+          "text": "Flags casing drift: 'signup form' (lowercase) and 'NOTIFY TEAM' (all caps) vs Title Case",
+          "passed": true,
+          "evidence": "Finding 4: 'Labels mix four styles: \"Start Here\" (Title Case), \"signup form\" (lowercase)... \"NOTIFY TEAM\" (ALL CAPS)' with Title Case normalization suggested in fix step 3."
+        },
+        {
+          "text": "Mentions the single unlabeled edge (signup form \u2192 Email Verifier) as a minor point",
+          "passed": true,
+          "evidence": "Finding 5 identifies exactly that edge and no others as unlabeled: 'e2 (form \u2192 verify) is unlabeled while its siblings carry labels.' Filed under Medium rather than minor, but it is correctly scoped to the single edge."
+        },
+        {
+          "text": "Does not over-flag: no invented issues (no dangling edges, no placeholders, no level mixing claimed)",
+          "passed": false,
+          "evidence": "The report invents dangling-structure issues the fixture does not contain: finding 2 says 'n-notify in particular is a dangling node with no outgoing edge \u2014 it looks unfinished' and the summary claims 'a dangling failure path with no end node.' In the fixture n-notify is a legitimate terminal step and no edge is broken (all 4 edges resolve). No placeholder or level-mixing claims, but the dangling claims fail this negative assertion."
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 79.3,
+        "stddev": 16.7475,
+        "min": 67.7,
+        "max": 98.5
+      },
+      "tokens": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.9333,
+        "stddev": 0.1155,
+        "min": 0.8,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 67.9333,
+        "stddev": 10.0271,
+        "min": 61.7,
+        "max": 79.5
+      },
+      "tokens": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.07",
+      "time_seconds": "+11.4",
+      "tokens": "+0"
+    }
+  },
+  "notes": [
+    "Eval 3 (onboarding-flow) is the only discriminating eval: the baseline invented structural failures (called the legitimate NOTIFY TEAM terminal node 'a dangling node' and claimed a 'dangling failure path with no end node'), failing the over-flagging assertion; the with-skill run correctly reported no dangling edges or placeholders. This is the exact miscalibration the skill's severity-calibration guidance targets.",
+    "Eval 1 (messy-architecture) is non-discriminating on this run: baseline also passed 9/9, catching the placeholder, dangling edge e3, floating edge e4, unlabeled edges, missing legend, metadata drift, and level mixing. On a deliberately broken file, unaided Claude reading raw XML can find most issues; the skill's value there is consistency, not capability.",
+    "Eval 2 (clean-checkout) passed 4/4 in both configs. The baseline's two minor observations (decision node with no outgoing branches, uneven spacing) were factually grounded and marked non-blocking, so both avoided manufacturing findings here.",
+    "With-skill runs averaged 11.4s slower (79.3s vs 67.9s) - the cost of running the lint script and reading its JSON before writing the report.",
+    "Only 1 run per configuration per eval (variance shown is across evals, not repeats), and token counts were not captured by the harness (0 across the board). The +7pp pass-rate delta rests on a single assertion; rerun with more evals or repeats before treating calibration improvement as settled.",
+    "17 of 18 assertions passed in both configurations - most assertions test detection capability, which Claude already has. The skill's durable edge is in the judgment/negative space (not inventing problems), which only 2 of 18 assertions currently measure."
+  ]
+}

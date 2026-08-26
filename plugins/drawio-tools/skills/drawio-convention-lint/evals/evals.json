@@ -1,0 +1,47 @@
+{
+  "skill_name": "drawio-convention-lint",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm about to share this architecture diagram with my team — before I do, can you check it against diagram conventions? Lint everything: metadata, naming, line labels, legend, abstraction levels, whatever you can find. File: /Users/trang_thi_thuy.n/GIT/ntttrang-marketplace/plugins/drawio-tools/skills/drawio-convention-lint-workspace/fixtures/messy_architecture.drawio",
+      "expected_output": "Review-style markdown report catching: default page name 'Page-1', unnamed layer, 'New Shape' placeholder, duplicate 'Redis Cache' labels, dangling edge e3 to a deleted node, floating edge e4, all 5 edges unlabeled, 3+ fill colors with no legend, casing drift ('auth-service', 'token validator' vs Title Case), metadata key drift (technology vs tech, owner only on one node), and C4 level mixing (Customer actor next to API Gateway container with internal components).",
+      "files": ["fixtures/messy_architecture.drawio"],
+      "assertions": [
+        "Flags the 'New Shape' placeholder label as an issue",
+        "Identifies the dangling edge pointing to a deleted node (n-deleted-long-ago) and/or the floating edge with no endpoints",
+        "Reports that the edges are unlabeled (all 5 have no labels)",
+        "Flags the absence of a legend despite 3+ distinct fill colors used meaningfully",
+        "Flags metadata inconsistency: key drift (technology vs tech) and/or owner attribute on only one node",
+        "Identifies abstraction-level mixing: the Customer actor alongside an API Gateway container with internal components (Request Router, token validator)",
+        "Flags the default page name 'Page-1'",
+        "Flags naming drift: 'auth-service' / 'token validator' lowercase vs Title Case labels",
+        "Report includes concrete, actionable fix suggestions rather than just listing problems"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "review this diagram for convention issues, we want to keep it clean: /Users/trang_thi_thuy.n/GIT/ntttrang-marketplace/plugins/drawio-tools/skills/drawio-convention-lint-workspace/fixtures/checkout_flow_clean.drawio",
+      "expected_output": "A short report saying the diagram is clean / publishable: page properly named, all edges labeled, legend present explaining colors, consistent casing, no placeholders, no dangling edges. Must NOT manufacture findings — at most trivial notes.",
+      "files": ["fixtures/checkout_flow_clean.drawio"],
+      "assertions": [
+        "Overall verdict is that the diagram is clean/publishable (no errors or serious warnings)",
+        "Does NOT invent problems: no claims of placeholder labels, dangling edges, or level mixing",
+        "Acknowledges the legend is present and explains the color coding",
+        "Notes that all edges are labeled (or makes no complaint about edge labels)"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "here's our onboarding flow diagram, my lead says it doesn't follow conventions but didn't say what's wrong. can you lint it and tell me what to fix? /Users/trang_thi_thuy.n/GIT/ntttrang-marketplace/plugins/drawio-tools/skills/drawio-convention-lint-workspace/fixtures/onboarding_flow.drawio",
+      "expected_output": "Report flagging: default page name 'Page-2', 5 fill colors with no legend (biggest issue), casing drift ('signup form', 'NOTIFY TEAM' vs Title Case), and the one unlabeled edge form → Email Verifier as a minor note. Should not over-flag: edges are mostly labeled, structure is sound.",
+      "files": ["fixtures/onboarding_flow.drawio"],
+      "assertions": [
+        "Flags the default page name 'Page-2'",
+        "Flags the missing legend given 5 distinct fill colors",
+        "Flags casing drift: 'signup form' (lowercase) and 'NOTIFY TEAM' (all caps) vs Title Case",
+        "Mentions the single unlabeled edge (signup form → Email Verifier) as a minor point",
+        "Does not over-flag: no invented issues (no dangling edges, no placeholders, no level mixing claimed)"
+      ]
+    }
+  ]
+}

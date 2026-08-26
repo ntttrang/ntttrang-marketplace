@@ -1,0 +1,11 @@
+{
+  "eval_id": 2,
+  "eval_name": "clean-checkout",
+  "prompt": "review this diagram for convention issues, we want to keep it clean: .../fixtures/checkout_flow_clean.drawio",
+  "assertions": [
+    {"text": "Overall verdict is that the diagram is clean/publishable (no errors or serious warnings)"},
+    {"text": "Does NOT invent problems: no claims of placeholder labels, dangling edges, or level mixing"},
+    {"text": "Acknowledges the legend is present and explains the color coding"},
+    {"text": "Notes that all edges are labeled (or makes no complaint about edge labels)"}
+  ]
+}

@@ -1,0 +1,72 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1">
+    <mxGraphModel dx="800" dy="600" grid="1" gridSize="10">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- default-named layer -->
+        <mxCell id="layer-1" value="Layer 1" parent="0" />
+        <!-- person actor (context level) -->
+        <mxCell id="n-actor" value="Customer" style="shape=actor;fillColor=#ffe6cc;" vertex="1" parent="layer-1">
+          <mxGeometry x="40" y="40" width="40" height="60" as="geometry" />
+        </mxCell>
+        <!-- container (container level) with metadata -->
+        <object id="n-api" label="API Gateway [Node.js]" owner="team-a" technology="Node.js">
+          <mxCell style="rounded=1;fillColor=#dae8fc;" vertex="1" parent="layer-1">
+            <mxGeometry x="200" y="40" width="160" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <!-- same level node, metadata key drift -->
+        <object id="n-auth" label="auth-service" tech="Go">
+          <mxCell style="rounded=1;fillColor=#d5e8d4;" vertex="1" parent="layer-1">
+            <mxGeometry x="200" y="160" width="160" height="60" as="geometry" />
+          </mxCell>
+        </object>
+        <!-- placeholder label -->
+        <mxCell id="n-placeholder" value="New Shape" style="fillColor=#f8cecc;" vertex="1" parent="layer-1">
+          <mxGeometry x="420" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <!-- database -->
+        <mxCell id="n-db" value="Main DB" style="shape=cylinder3;fillColor=#f8cecc;" vertex="1" parent="layer-1">
+          <mxGeometry x="420" y="160" width="90" height="70" as="geometry" />
+        </mxCell>
+        <!-- nested container: components INSIDE the API container = level mixing -->
+        <object id="c-router" label="API Gateway">
+          <mxCell style="rounded=1;dashed=1;container=1;fillColor=none;" vertex="1" parent="layer-1">
+            <mxGeometry x="640" y="40" width="300" height="220" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="n-router" value="Request Router" style="fillColor=#dae8fc;" vertex="1" parent="c-router">
+          <mxGeometry x="660" y="80" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="n-validator" value="token validator" style="fillColor=#dae8fc;" vertex="1" parent="c-router">
+          <mxGeometry x="660" y="160" width="120" height="40" as="geometry" />
+        </mxCell>
+        <!-- duplicate labels -->
+        <mxCell id="n-cache1" value="Redis Cache" style="shape=cylinder3;" vertex="1" parent="layer-1">
+          <mxGeometry x="420" y="300" width="90" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="n-cache2" value="Redis Cache" style="shape=cylinder3;" vertex="1" parent="layer-1">
+          <mxGeometry x="640" y="300" width="90" height="70" as="geometry" />
+        </mxCell>
+        <!-- edges: unlabeled, one dangling, one floating -->
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="layer-1" source="n-actor" target="n-api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="layer-1" source="n-api" target="n-auth">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="" edge="1" parent="layer-1" source="n-auth" target="n-deleted-long-ago">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="layer-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- container-to-nested-in-other-container edge: level-skipping -->
+        <mxCell id="e5" edge="1" parent="layer-1" source="c-router" target="n-validator">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

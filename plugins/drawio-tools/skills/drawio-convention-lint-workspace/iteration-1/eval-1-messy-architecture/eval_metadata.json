@@ -1,0 +1,16 @@
+{
+  "eval_id": 1,
+  "eval_name": "messy-architecture",
+  "prompt": "I'm about to share this architecture diagram with my team — before I do, can you check it against diagram conventions? Lint everything: metadata, naming, line labels, legend, abstraction levels, whatever you can find. File: .../fixtures/messy_architecture.drawio",
+  "assertions": [
+    {"text": "Flags the 'New Shape' placeholder label as an issue"},
+    {"text": "Identifies the dangling edge pointing to a deleted node (n-deleted-long-ago) and/or the floating edge with no endpoints"},
+    {"text": "Reports that the edges are unlabeled (all 5 have no labels)"},
+    {"text": "Flags the absence of a legend despite 3+ distinct fill colors used meaningfully"},
+    {"text": "Flags metadata inconsistency: key drift (technology vs tech) and/or owner attribute on only one node"},
+    {"text": "Identifies abstraction-level mixing: the Customer actor alongside an API Gateway container with internal components (Request Router, token validator)"},
+    {"text": "Flags the default page name 'Page-1'"},
+    {"text": "Flags naming drift: 'auth-service' / 'token validator' lowercase vs Title Case labels"},
+    {"text": "Report includes concrete, actionable fix suggestions rather than just listing problems"}
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "eval_id": 3,
+  "eval_name": "onboarding-flow",
+  "prompt": "here's our onboarding flow diagram, my lead says it doesn't follow conventions but didn't say what's wrong. can you lint it and tell me what to fix? .../fixtures/onboarding_flow.drawio",
+  "assertions": [
+    {"text": "Flags the default page name 'Page-2'"},
+    {"text": "Flags the missing legend given 5 distinct fill colors"},
+    {"text": "Flags casing drift: 'signup form' (lowercase) and 'NOTIFY TEAM' (all caps) vs Title Case"},
+    {"text": "Mentions the single unlabeled edge (signup form → Email Verifier) as a minor point"},
+    {"text": "Does not over-flag: no invented issues (no dangling edges, no placeholders, no level mixing claimed)"}
+  ]
+}

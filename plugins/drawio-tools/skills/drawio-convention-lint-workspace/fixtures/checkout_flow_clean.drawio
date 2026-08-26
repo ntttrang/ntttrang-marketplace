@@ -1,0 +1,40 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Checkout Flow">
+    <mxGraphModel dx="800" dy="600">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="n-start" value="Customer" style="shape=actor;" vertex="1" parent="1">
+          <mxGeometry x="40" y="120" width="40" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n-cart" value="Cart Service" style="rounded=1;fillColor=#dae8fc;" vertex="1" parent="1">
+          <mxGeometry x="180" y="120" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n-pay" value="Payment Service" style="rounded=1;fillColor=#dae8fc;" vertex="1" parent="1">
+          <mxGeometry x="400" y="120" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n-db" value="Orders DB" style="shape=cylinder3;fillColor=#d5e8d4;" vertex="1" parent="1">
+          <mxGeometry x="620" y="110" width="90" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="n-fraud" value="Fraud Check" style="rhombus;fillColor=#fff2cc;" vertex="1" parent="1">
+          <mxGeometry x="420" y="240" width="110" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="n-legend" value="Legend&#10;Blue: service&#10;Green: data store&#10;Yellow: decision" style="shape=note;fillColor=#f5f5f5;" vertex="1" parent="1">
+          <mxGeometry x="640" y="260" width="140" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="adds items" edge="1" parent="1" source="n-start" target="n-cart">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="submits order" edge="1" parent="1" source="n-cart" target="n-pay">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="writes order" edge="1" parent="1" source="n-pay" target="n-db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="validates" edge="1" parent="1" source="n-pay" target="n-fraud">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

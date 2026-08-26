@@ -1,0 +1,37 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-2">
+    <mxGraphModel dx="800" dy="600">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="n-start" value="Start Here" style="ellipse;fillColor=#d5e8d4;" vertex="1" parent="1">
+          <mxGeometry x="40" y="120" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="n-form" value="signup form" style="fillColor=#dae8fc;" vertex="1" parent="1">
+          <mxGeometry x="200" y="120" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="n-verify" value="Email Verifier" style="fillColor=#ffe6cc;" vertex="1" parent="1">
+          <mxGeometry x="400" y="120" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="n-provision" value="Account Provisioner" style="fillColor=#e1d5e7;" vertex="1" parent="1">
+          <mxGeometry x="610" y="120" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="n-notify" value="NOTIFY TEAM" style="fillColor=#f8cecc;" vertex="1" parent="1">
+          <mxGeometry x="400" y="240" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="fills in" edge="1" parent="1" source="n-start" target="n-form">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="n-form" target="n-verify">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="verified" edge="1" parent="1" source="n-verify" target="n-provision">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="on failure" edge="1" parent="1" source="n-verify" target="n-notify">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

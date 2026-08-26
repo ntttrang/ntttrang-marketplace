@@ -1,0 +1,55 @@
+{
+  "summary": {
+    "passed": 9,
+    "failed": 0,
+    "total": 9,
+    "pass_rate": 1.0
+  },
+  "expectations": [
+    {
+      "text": "Flags the 'New Shape' placeholder label as an issue",
+      "passed": true,
+      "evidence": "B3 (BLOCKER): node n-placeholder (\"New Shape\") \u2014 'Untouched default placeholder label shipped in the diagram... Rename to the actual component, or delete it.'"
+    },
+    {
+      "text": "Identifies the dangling edge pointing to a deleted node (n-deleted-long-ago) and/or the floating edge with no endpoints",
+      "passed": true,
+      "evidence": "B1: edge e3 (n-auth \u2192 n-deleted-long-ago) 'targets a node that does not exist anywhere in the file'; B2: e4 'Edge with neither source nor target \u2014 a floating, unconnected edge.'"
+    },
+    {
+      "text": "Reports that the edges are unlabeled (all 5 have no labels)",
+      "passed": true,
+      "evidence": "L1 (MAJOR): 'No edge in the entire diagram has a label.' e3 even carries an explicit empty value=\"\"."
+    },
+    {
+      "text": "Flags the absence of a legend despite 3+ distinct fill colors used meaningfully",
+      "passed": true,
+      "evidence": "G1 (MAJOR): 'No legend exists. The diagram uses at least 4 fill colors, 2 shapes, and a dashed style with no key anywhere.' G2 details the inconsistent color usage."
+    },
+    {
+      "text": "Flags metadata inconsistency: key drift (technology vs tech) and/or owner attribute on only one node",
+      "passed": true,
+      "evidence": "M1 (MAJOR): n-api uses technology=\"Node.js\" + owner=\"team-a\"; n-auth uses tech=\"Go\" and no owner \u2014 'Same concept, two key names... and inconsistent coverage (1 of 10 nodes has an owner).'"
+    },
+    {
+      "text": "Identifies abstraction-level mixing: the Customer actor alongside an API Gateway container with internal components (Request Router, token validator)",
+      "passed": true,
+      "evidence": "B4 (BLOCKER): 'Three abstraction levels are mixed on one page: a person/actor (context level: Customer), containers..., and components inside a container (Request Router, token validator).' Fix: split into two pages."
+    },
+    {
+      "text": "Flags the default page name 'Page-1'",
+      "passed": true,
+      "evidence": "M3 (MINOR): '<diagram name=\"Page-1\">' \u2014 'Default page name... Rename to the diagram's purpose.'"
+    },
+    {
+      "text": "Flags naming drift: 'auth-service' / 'token validator' lowercase vs Title Case labels",
+      "passed": true,
+      "evidence": "N3 (MAJOR): 'Casing convention drift across four different styles: API Gateway / Main DB..., auth-service (kebab-case), token validator... lowercase, Request Router (Title Case)'; fix suggests 'Auth Service, Token Validator'."
+    },
+    {
+      "text": "Report includes concrete, actionable fix suggestions rather than just listing problems",
+      "passed": true,
+      "evidence": "Every finding row has a 'Fix' column with specific actions, plus a 9-step 'Suggested fix order' section (e.g., 'Delete/repair broken edges: e3 (dangling), e4 (floating), e5')."
+    }
+  ]
+}

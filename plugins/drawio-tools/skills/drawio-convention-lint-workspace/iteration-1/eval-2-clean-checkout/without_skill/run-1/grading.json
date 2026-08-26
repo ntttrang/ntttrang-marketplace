@@ -1,0 +1,30 @@
+{
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "expectations": [
+    {
+      "text": "Overall verdict is that the diagram is clean/publishable (no errors or serious warnings)",
+      "passed": true,
+      "evidence": "'Overall verdict: Clean \u2014 no blocking convention violations... Recommendation: Accept as-is.' The two observations are explicitly non-blocking: 'neither of which requires a fix to call this diagram conformant.'"
+    },
+    {
+      "text": "Does NOT invent problems: no claims of placeholder labels, dangling edges, or level mixing",
+      "passed": true,
+      "evidence": "Check table passes all 8 checks ('no dangling refs \u2014 all 4 edges resolve to existing nodes'); no placeholder or level-mixing claims anywhere. Its one structural observation (decision node has no outgoing branches) is factually true in the fixture and not one of the prohibited invented categories."
+    },
+    {
+      "text": "Acknowledges the legend is present and explains the color coding",
+      "passed": true,
+      "evidence": "Check 4: 'Fill colors match the legend's declared scheme (blue = service, green = data store, yellow = decision) \u2014 #dae8fc services, #d5e8d4 data store, #fff2cc decision; legend #f5f5f5 note is neutral.'"
+    },
+    {
+      "text": "Notes that all edges are labeled (or makes no complaint about edge labels)",
+      "passed": true,
+      "evidence": "Check 3: 'Every edge is labeled (adds items, submits order, writes order, validates) \u2014 Pass \u2014 no unlabeled connections.'"
+    }
+  ]
+}
